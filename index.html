@@ -84,6 +84,16 @@
         .vibrate-periodic {
             animation: vibrate 3s ease-in-out infinite;
         }
+
+        /* Hide scrollbar but allow scrolling */
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 
@@ -213,6 +223,106 @@
             <svg class="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
+        </div>
+    </section>
+
+    <!-- SECTION REELS/STORIES - Carrousel Vidéo Vertical -->
+    <section id="reels" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Section Title -->
+            <div class="text-center mb-10" data-aos="fade-up">
+                <span class="text-bordeaux font-semibold tracking-wider uppercase text-sm">Nos Coulisses</span>
+                <h2 class="text-3xl md:text-4xl font-playfair font-bold text-bordeaux mt-2">
+                    EN DIRECT DE L'ATYPIQUE
+                </h2>
+            </div>
+
+            <!-- Video Carousel (Scroll Snap) -->
+            <div class="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4" data-aos="fade-up"
+                data-aos-delay="200">
+
+                <!-- 
+                    ========================================
+                    INSTRUCTIONS POUR LES VIDÉOS CLOUDINARY
+                    ========================================
+                    Remplacez chaque VIDEO_X_URL par le lien direct .mp4 de Cloudinary.
+                    Format attendu : https://res.cloudinary.com/VOTRE_CLOUD/video/upload/v.../NOM_VIDEO.mp4
+                -->
+
+                <!-- Vidéo 1 -->
+                <div class="flex-shrink-0 snap-center">
+                    <div
+                        class="relative w-[200px] md:w-[240px] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl bg-gray-900">
+                        <video class="w-full h-full object-cover" src="VIDEO_1_URL" autoplay muted loop playsinline
+                            poster="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80">
+                        </video>
+                        <!-- Play indicator overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 pointer-events-none">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vidéo 2 -->
+                <div class="flex-shrink-0 snap-center">
+                    <div
+                        class="relative w-[200px] md:w-[240px] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl bg-gray-900">
+                        <video class="w-full h-full object-cover" src="VIDEO_2_URL" autoplay muted loop playsinline
+                            poster="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80">
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 pointer-events-none">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vidéo 3 -->
+                <div class="flex-shrink-0 snap-center">
+                    <div
+                        class="relative w-[200px] md:w-[240px] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl bg-gray-900">
+                        <video class="w-full h-full object-cover" src="VIDEO_3_URL" autoplay muted loop playsinline
+                            poster="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80">
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 pointer-events-none">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vidéo 4 -->
+                <div class="flex-shrink-0 snap-center">
+                    <div
+                        class="relative w-[200px] md:w-[240px] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl bg-gray-900">
+                        <video class="w-full h-full object-cover" src="VIDEO_4_URL" autoplay muted loop playsinline
+                            poster="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&q=80">
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 pointer-events-none">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
