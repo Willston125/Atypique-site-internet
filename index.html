@@ -1,103 +1,587 @@
-<section id="videos" class="py-16 bg-white overflow-hidden relative border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-6">
+<!DOCTYPE html>
+<html lang="fr">
 
-        <div class="flex items-center justify-between mb-8">
-            <h2 class="text-3xl font-serif font-bold text-atypique-gray flex items-center">
-                <span class="mr-3 text-red-500 animate-pulse text-4xl">•</span> EN DIRECT DE L'ATYPIQUE
-            </h2>
-            <span class="text-sm text-gray-400 md:hidden">Glissez pour voir la suite →</span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Atypique - Restaurant & Traiteur à Djibouti</title>
+    <meta name="description"
+        content="L'Atypique, votre restaurant et traiteur de confiance à Djibouti. Burgers, pizzas, wraps et plats sur commande.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js for Cart Functionality -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'atypique-red': '#D32F2F',
+                        'atypique-gray': '#2C2C2C',
+                        'atypique-cream': '#F5F5F0',
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-atypique-cream text-atypique-gray antialiased" x-data="{ cart: [], showCart: false }">
+
+    <!-- ========================= NAVBAR ========================= -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-atypique-red rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-xl font-serif">A</span>
+                    </div>
+                    <span class="text-2xl font-serif font-bold text-atypique-gray">L'Atypique</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero"
+                        class="text-atypique-gray hover:text-atypique-red transition-colors font-medium">Accueil</a>
+                    <a href="#videos"
+                        class="text-atypique-gray hover:text-atypique-red transition-colors font-medium">Vidéos</a>
+                    <a href="#services"
+                        class="text-atypique-gray hover:text-atypique-red transition-colors font-medium">Services</a>
+                    <a href="#menu"
+                        class="text-atypique-gray hover:text-atypique-red transition-colors font-medium">Menu</a>
+                    <a href="#footer"
+                        class="text-atypique-gray hover:text-atypique-red transition-colors font-medium">Contact</a>
+                </div>
+
+                <!-- Phone & Cart -->
+                <div class="flex items-center space-x-4">
+                    <a href="tel:77382287"
+                        class="hidden md:flex items-center space-x-2 bg-atypique-red text-white px-4 py-2 rounded-full hover:bg-red-700 transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                        </svg>
+                        <span class="font-semibold">77.38.22.87</span>
+                    </a>
+                    <!-- Cart Button -->
+                    <button @click="showCart = !showCart"
+                        class="relative bg-atypique-gray text-white p-2 rounded-full hover:bg-gray-800 transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span x-show="cart.length > 0" x-text="cart.length"
+                            class="absolute -top-1 -right-1 bg-atypique-red text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold"></span>
+                    </button>
+                </div>
+            </div>
         </div>
+    </nav>
 
-        <div class="relative group max-w-[680px] mx-auto"> <button onclick="scrollVideos('left')"
-                class="absolute -left-4 md:-left-12 top-[50%] transform -translate-y-1/2 z-20 bg-white hover:bg-atypique-red hover:text-white text-atypique-gray p-4 rounded-full shadow-2xl transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block cursor-pointer border border-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
+    <!-- ========================= HERO SECTION ========================= -->
+    <section id="hero"
+        class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-atypique-cream via-white to-red-50 overflow-hidden">
+        <!-- Decorative Elements -->
+        <div class="absolute top-20 left-10 w-32 h-32 bg-atypique-red/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-40 h-40 bg-red-300/20 rounded-full blur-3xl"></div>
 
-            <button onclick="scrollVideos('right')"
-                class="absolute -right-4 md:-right-12 top-[50%] transform -translate-y-1/2 z-20 bg-white hover:bg-atypique-red hover:text-white text-atypique-gray p-4 rounded-full shadow-2xl transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block cursor-pointer border border-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
+        <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <!-- Left Content -->
+            <div class="space-y-6">
+                <span
+                    class="inline-block px-4 py-2 bg-atypique-red/10 text-atypique-red rounded-full text-sm font-semibold uppercase tracking-wider">Restaurant
+                    & Traiteur</span>
+                <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight text-atypique-gray">
+                    Bienvenue chez <span class="text-atypique-red">L'Atypique</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+                    Découvrez une expérience culinaire unique à Djibouti. Burgers gourmands, pizzas artisanales, wraps
+                    savoureux et bien plus encore.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="https://wa.me/25377382287" target="_blank"
+                        class="inline-flex items-center justify-center space-x-2 bg-atypique-red text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transform hover:scale-105 transition-all shadow-xl hover:shadow-2xl">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                        <span>Commander sur WhatsApp</span>
+                    </a>
+                    <a href="#menu"
+                        class="inline-flex items-center justify-center space-x-2 bg-white text-atypique-gray px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-50 border-2 border-atypique-gray transition-all">
+                        <span>Voir le Menu</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
 
-            <div id="video-carousel"
-                class="flex overflow-x-auto space-x-6 pb-4 scrollbar-hide snap-x snap-mandatory px-2"
-                style="-webkit-overflow-scrolling: touch;">
-
+            <!-- Right Image -->
+            <div class="relative">
                 <div
-                    class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
-                    <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
-                        <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video1_vhlmc3.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                    class="relative z-10 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=900&fit=crop"
+                        alt="Burger délicieux" class="w-full h-[600px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-8 left-8 text-white">
+                        <p class="text-3xl font-serif font-bold">Nos Burgers</p>
+                        <p class="text-lg">Signature de la maison</p>
                     </div>
-                    <div class="absolute bottom-6 left-6 text-white pointer-events-none">
-                        <p class="font-bold text-xl uppercase tracking-wider font-serif">L'Ambiance</p>
+                </div>
+                <!-- Floating Badge -->
+                <div
+                    class="absolute -top-4 -right-4 bg-atypique-red text-white p-6 rounded-full shadow-2xl animate-bounce">
+                    <p class="text-sm font-bold">Livraison</p>
+                    <p class="text-xs">Rapide</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= VIDEOS SECTION (CORRECTED) ========================= -->
+    <section id="videos" class="py-16 bg-white overflow-hidden relative border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-3xl font-serif font-bold text-atypique-gray flex items-center">
+                    <span class="mr-3 text-red-500 animate-pulse text-4xl">•</span> EN DIRECT DE L'ATYPIQUE
+                </h2>
+                <span class="text-sm text-gray-400 md:hidden">Glissez pour voir la suite →</span>
+            </div>
+
+            <!-- Limited Width Container with Navigation -->
+            <div class="relative group max-w-[680px] mx-auto">
+                <!-- Left Arrow -->
+                <button onclick="scrollVideos('left')"
+                    class="absolute -left-4 md:-left-12 top-[50%] transform -translate-y-1/2 z-20 bg-white hover:bg-atypique-red hover:text-white text-atypique-gray p-4 rounded-full shadow-2xl transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block cursor-pointer border border-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+
+                <!-- Right Arrow -->
+                <button onclick="scrollVideos('right')"
+                    class="absolute -right-4 md:-right-12 top-[50%] transform -translate-y-1/2 z-20 bg-white hover:bg-atypique-red hover:text-white text-atypique-gray p-4 rounded-full shadow-2xl transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block cursor-pointer border border-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+
+                <!-- Video Carousel (Shows only 2 videos at a time) -->
+                <div id="video-carousel"
+                    class="flex overflow-x-auto space-x-6 pb-4 scrollbar-hide snap-x snap-mandatory px-2"
+                    style="-webkit-overflow-scrolling: touch;">
+
+                    <!-- Video 1 -->
+                    <div
+                        class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
+                        <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
+                            <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video1_vhlmc3.mp4"
+                                type="video/mp4">
+                        </video>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                        </div>
+                        <div class="absolute bottom-6 left-6 text-white pointer-events-none">
+                            <p class="font-bold text-xl uppercase tracking-wider font-serif">L'Ambiance</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div
+                        class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
+                        <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
+                            <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video2_js2u2d.mp4"
+                                type="video/mp4">
+                        </video>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                        </div>
+                        <div class="absolute bottom-6 left-6 text-white pointer-events-none">
+                            <p class="font-bold text-xl uppercase tracking-wider font-serif">Côté Cuisine</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div
+                        class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
+                        <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
+                            <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video3_zttlrn.mp4"
+                                type="video/mp4">
+                        </video>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                        </div>
+                        <div class="absolute bottom-6 left-6 text-white pointer-events-none">
+                            <p class="font-bold text-xl uppercase tracking-wider font-serif">Nos Spécialités</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 4 -->
+                    <div
+                        class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
+                        <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
+                            <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video4_gl76pc.mp4"
+                                type="video/mp4">
+                        </video>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                        </div>
+                        <div class="absolute bottom-6 left-6 text-white pointer-events-none">
+                            <p class="font-bold text-xl uppercase tracking-wider font-serif">Événements</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= SERVICES SECTION (3 COLUMNS) ========================= -->
+    <section id="services" class="py-20 bg-atypique-cream">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-atypique-gray mb-4">Nos Services</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Une expérience culinaire complète pour tous vos
+                    besoins</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1: Restaurant -->
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"
+                            alt="Restaurant"
+                            class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-atypique-red/10 rounded-full flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-atypique-red" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold text-atypique-gray mb-3">Restaurant</h3>
+                        <p class="text-gray-600 leading-relaxed">Dégustez nos spécialités dans une ambiance conviviale
+                            et chaleureuse. Service sur place tous les jours.</p>
                     </div>
                 </div>
 
+                <!-- Service 2: Traiteur -->
                 <div
-                    class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
-                    <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
-                        <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video2_js2u2d.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600&h=400&fit=crop"
+                            alt="Traiteur"
+                            class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
                     </div>
-                    <div class="absolute bottom-6 left-6 text-white pointer-events-none">
-                        <p class="font-bold text-xl uppercase tracking-wider font-serif">Côté Cuisine</p>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-atypique-red/10 rounded-full flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-atypique-red" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold text-atypique-gray mb-3">Traiteur</h3>
+                        <p class="text-gray-600 leading-relaxed">Organisez vos événements avec style. Mariages,
+                            anniversaires, séminaires - nous nous occupons de tout.</p>
                     </div>
                 </div>
 
+                <!-- Service 3: Livraison -->
                 <div
-                    class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
-                    <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
-                        <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video3_zttlrn.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?w=600&h=400&fit=crop"
+                            alt="Livraison"
+                            class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
                     </div>
-                    <div class="absolute bottom-6 left-6 text-white pointer-events-none">
-                        <p class="font-bold text-xl uppercase tracking-wider font-serif">Nos Spécialités</p>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-atypique-red/10 rounded-full flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-atypique-red" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-serif font-bold text-atypique-gray mb-3">Livraison Rapide</h3>
+                        <p class="text-gray-600 leading-relaxed">Commandez en ligne et recevez vos plats chauds
+                            directement chez vous. Livraison rapide et soignée.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= MENU SECTION (WITH ALPINE.JS CART) ========================= -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-atypique-gray mb-4">Notre Menu</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Découvrez nos spécialités préparées avec passion</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Burger Card -->
+                <div
+                    class="bg-atypique-cream rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop"
+                            alt="Burger"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-serif font-bold text-atypique-gray mb-2">Burger Signature</h3>
+                        <p class="text-gray-600 mb-4">Pain maison, steak 200g, cheddar, sauce spéciale</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-atypique-red">2500 FDJ</span>
+                            <button @click="cart.push({name: 'Burger Signature', price: 2500})"
+                                class="bg-atypique-red text-white px-6 py-2 rounded-full hover:bg-red-700 transition-all transform hover:scale-105 font-semibold">
+                                Ajouter
+                            </button>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Pizza Card -->
                 <div
-                    class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
-                    <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
-                        <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video4_gl76pc.mp4"
-                            type="video/mp4">
-                    </video>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                    class="bg-atypique-cream rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&h=400&fit=crop"
+                            alt="Pizza"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
-                    <div class="absolute bottom-6 left-6 text-white pointer-events-none">
-                        <p class="font-bold text-xl uppercase tracking-wider font-serif">Événements</p>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-serif font-bold text-atypique-gray mb-2">Pizza Quattro Stagioni</h3>
+                        <p class="text-gray-600 mb-4">Jambon, champignons, artichauts, olives</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-atypique-red">3000 FDJ</span>
+                            <button @click="cart.push({name: 'Pizza Quattro Stagioni', price: 3000})"
+                                class="bg-atypique-red text-white px-6 py-2 rounded-full hover:bg-red-700 transition-all transform hover:scale-105 font-semibold">
+                                Ajouter
+                            </button>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Wrap Card -->
+                <div
+                    class="bg-atypique-cream rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&h=400&fit=crop"
+                            alt="Wrap"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-serif font-bold text-atypique-gray mb-2">Wrap Poulet Grillé</h3>
+                        <p class="text-gray-600 mb-4">Poulet mariné, crudités fraîches, sauce caesar</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-atypique-red">1800 FDJ</span>
+                            <button @click="cart.push({name: 'Wrap Poulet Grillé', price: 1800})"
+                                class="bg-atypique-red text-white px-6 py-2 rounded-full hover:bg-red-700 transition-all transform hover:scale-105 font-semibold">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= CART MODAL (ALPINE.JS) ========================= -->
+    <div x-show="showCart" x-transition
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+        @click.self="showCart = false">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 max-h-[80vh] overflow-hidden flex flex-col">
+            <!-- Header -->
+            <div class="p-6 border-b border-gray-200 flex items-center justify-between bg-atypique-gray text-white">
+                <h3 class="text-2xl font-serif font-bold">Votre Panier</h3>
+                <button @click="showCart = false" class="text-white hover:text-gray-300 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Cart Items -->
+            <div class="p-6 flex-1 overflow-y-auto">
+                <template x-if="cart.length === 0">
+                    <div class="text-center py-12">
+                        <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <p class="text-gray-500 text-lg">Votre panier est vide</p>
+                    </div>
+                </template>
+
+                <template x-if="cart.length > 0">
+                    <div class="space-y-4">
+                        <template x-for="(item, index) in cart" :key="index">
+                            <div class="flex items-center justify-between p-4 bg-atypique-cream rounded-lg">
+                                <div class="flex-1">
+                                    <p class="font-semibold text-atypique-gray" x-text="item.name"></p>
+                                    <p class="text-atypique-red font-bold" x-text="item.price + ' FDJ'"></p>
+                                </div>
+                                <button @click="cart.splice(index, 1)"
+                                    class="text-red-500 hover:text-red-700 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Footer -->
+            <div x-show="cart.length > 0" class="p-6 border-t border-gray-200 bg-gray-50">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-lg font-semibold text-atypique-gray">Total:</span>
+                    <span class="text-2xl font-bold text-atypique-red"
+                        x-text="cart.reduce((sum, item) => sum + item.price, 0) + ' FDJ'"></span>
+                </div>
+                <a :href="'https://wa.me/25377382287?text=Bonjour, je souhaite commander: ' + cart.map(item => item.name).join(', ') + ' - Total: ' + cart.reduce((sum, item) => sum + item.price, 0) + ' FDJ'"
+                    target="_blank"
+                    class="block w-full bg-green-600 text-white text-center py-4 rounded-full font-semibold hover:bg-green-700 transition-all transform hover:scale-105 shadow-lg">
+                    Commander sur WhatsApp
+                </a>
             </div>
         </div>
     </div>
-</section>
 
-<script>
-    function scrollVideos(direction) {
-        const container = document.getElementById('video-carousel');
-        const scrollAmount = 340; // Largeur d'une vidéo + espace
+    <!-- ========================= FOOTER ========================= -->
+    <footer id="footer" class="bg-atypique-gray text-white py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-atypique-red rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-xl font-serif">A</span>
+                        </div>
+                        <span class="text-2xl font-serif font-bold">L'Atypique</span>
+                    </div>
+                    <p class="text-gray-400">Votre restaurant & traiteur de confiance à Djibouti</p>
+                </div>
 
-        if (direction === 'left') {
-            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        } else {
-            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                <!-- Links -->
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#hero" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a>
+                        </li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-white transition-colors">Menu</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                            </svg>
+                            <span>77.38.22.87</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                            </svg>
+                            <span>contact@latypique.dj</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Djibouti, Djibouti</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hours -->
+                <div>
+                    <h4 class="font-serif font-bold text-lg mb-4">Horaires</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Lundi - Jeudi: 11h - 23h</li>
+                        <li>Vendredi - Samedi: 11h - 00h</li>
+                        <li>Dimanche: 12h - 22h</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 L'Atypique. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================= WHATSAPP FLOATING BUTTON ========================= -->
+    <a href="https://wa.me/25377382287" target="_blank"
+        class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-all transform hover:scale-110 animate-bounce">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+    </a>
+
+    <!-- ========================= SCRIPTS ========================= -->
+    <script>
+        // Video Carousel Navigation
+        function scrollVideos(direction) {
+            const container = document.getElementById('video-carousel');
+            const scrollAmount = 340; // Width of one video + space
+
+            if (direction === 'left') {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
         }
-    }
-</script>
+    </script>
+</body>
+
+</html>
