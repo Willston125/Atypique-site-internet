@@ -165,102 +165,171 @@
         </div>
     </section>
 
-    <!-- ========================= VIDEOS SECTION (CORRECTED) ========================= -->
-    <section id="videos" class="py-16 bg-white overflow-hidden relative border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6">
+    <!-- ========================= VIDEOS SECTION (ELEGANT DESIGN) ========================= -->
+    <section id="videos" class="py-20 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden relative">
+        <!-- Decorative background elements -->
+        <div
+            class="absolute top-0 left-0 w-72 h-72 bg-atypique-red/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-96 h-96 bg-red-100/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2">
+        </div>
 
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-3xl font-serif font-bold text-atypique-gray flex items-center">
-                    <span class="mr-3 text-red-500 animate-pulse text-4xl">•</span> EN DIRECT DE L'ATYPIQUE
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <!-- Header with elegant styling -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center space-x-3 mb-4">
+                    <span class="w-12 h-[2px] bg-atypique-red"></span>
+                    <span class="text-atypique-red text-sm font-semibold uppercase tracking-[0.2em]">Teasing</span>
+                    <span class="w-12 h-[2px] bg-atypique-red"></span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-atypique-gray mb-4">
+                    <span class="inline-flex items-center">
+                        <span class="relative">
+                            <span class="mr-3 text-atypique-red animate-pulse">●</span>
+                            <span class="absolute -inset-1 bg-red-100 rounded-full blur-md animate-pulse"></span>
+                        </span>
+                        En Direct de L'Atypique
+                    </span>
                 </h2>
-                <span class="text-sm text-gray-400 md:hidden">Glissez pour voir la suite →</span>
+                <p class="text-gray-500 text-lg max-w-xl mx-auto">Découvrez les coulisses et l'ambiance unique de notre
+                    restaurant</p>
+                <span class="inline-block mt-4 text-sm text-gray-400 md:hidden">← Glissez pour explorer →</span>
             </div>
 
-            <!-- Limited Width Container with Navigation -->
-            <div class="relative group max-w-[680px] mx-auto">
-                <!-- Left Arrow -->
-                <button onclick="scrollVideos('left')"
-                    class="absolute -left-4 md:-left-12 top-[50%] transform -translate-y-1/2 z-20 bg-white hover:bg-atypique-red hover:text-white text-atypique-gray p-4 rounded-full shadow-2xl transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block cursor-pointer border border-gray-100">
+            <!-- Limited Width Container (700px max) with Navigation Arrows -->
+            <div class="relative group max-w-[700px] mx-auto">
+
+                <!-- Left Arrow - Elegant Design -->
+                <button onclick="scrollVideos('left')" aria-label="Vidéo précédente"
+                    class="absolute -left-6 md:-left-16 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-atypique-red text-atypique-gray hover:text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 opacity-0 group-hover:opacity-100 border border-gray-200 hover:border-atypique-red hover:scale-110 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="3">
+                        stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
 
-                <!-- Right Arrow -->
-                <button onclick="scrollVideos('right')"
-                    class="absolute -right-4 md:-right-12 top-[50%] transform -translate-y-1/2 z-20 bg-white hover:bg-atypique-red hover:text-white text-atypique-gray p-4 rounded-full shadow-2xl transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block cursor-pointer border border-gray-100">
+                <!-- Right Arrow - Elegant Design -->
+                <button onclick="scrollVideos('right')" aria-label="Vidéo suivante"
+                    class="absolute -right-6 md:-right-16 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center w-14 h-14 bg-white/90 backdrop-blur-sm hover:bg-atypique-red text-atypique-gray hover:text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 opacity-0 group-hover:opacity-100 border border-gray-200 hover:border-atypique-red hover:scale-110 cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="3">
+                        stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
 
-                <!-- Video Carousel (Shows only 2 videos at a time) -->
+                <!-- Gradient Fade Edges (Visual hint that more content exists) -->
+                <div
+                    class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none hidden md:block">
+                </div>
+                <div
+                    class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none hidden md:block">
+                </div>
+
+                <!-- Video Carousel (Shows only 2 videos at a time on desktop) -->
                 <div id="video-carousel"
-                    class="flex overflow-x-auto space-x-6 pb-4 scrollbar-hide snap-x snap-mandatory px-2"
+                    class="flex overflow-x-auto gap-5 pb-6 pt-2 scrollbar-hide snap-x snap-mandatory scroll-smooth px-1"
                     style="-webkit-overflow-scrolling: touch;">
 
                     <!-- Video 1 -->
                     <div
-                        class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
-                        <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
+                        class="flex-shrink-0 w-[280px] md:w-[330px] snap-center relative group/video rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:shadow-3xl bg-black ring-1 ring-white/20">
+                        <video class="w-full h-[480px] md:h-[520px] object-cover" autoplay muted loop playsinline>
                             <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video1_vhlmc3.mp4"
                                 type="video/mp4">
                         </video>
+                        <!-- Gradient Overlay -->
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none">
                         </div>
-                        <div class="absolute bottom-6 left-6 text-white pointer-events-none">
-                            <p class="font-bold text-xl uppercase tracking-wider font-serif">L'Ambiance</p>
+                        <!-- Live Badge -->
+                        <div
+                            class="absolute top-4 left-4 flex items-center space-x-2 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                            <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                            <span class="text-white text-xs font-semibold uppercase tracking-wide">Live</span>
+                        </div>
+                        <!-- Video Title -->
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <p class="font-bold text-2xl font-serif mb-1">L'Ambiance</p>
+                            <p class="text-sm text-gray-300 opacity-80">Notre atmosphère unique</p>
                         </div>
                     </div>
 
                     <!-- Video 2 -->
                     <div
-                        class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
-                        <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
+                        class="flex-shrink-0 w-[280px] md:w-[330px] snap-center relative group/video rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:shadow-3xl bg-black ring-1 ring-white/20">
+                        <video class="w-full h-[480px] md:h-[520px] object-cover" autoplay muted loop playsinline>
                             <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video2_js2u2d.mp4"
                                 type="video/mp4">
                         </video>
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none">
                         </div>
-                        <div class="absolute bottom-6 left-6 text-white pointer-events-none">
-                            <p class="font-bold text-xl uppercase tracking-wider font-serif">Côté Cuisine</p>
+                        <div
+                            class="absolute top-4 left-4 flex items-center space-x-2 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                            <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                            <span class="text-white text-xs font-semibold uppercase tracking-wide">Live</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <p class="font-bold text-2xl font-serif mb-1">Côté Cuisine</p>
+                            <p class="text-sm text-gray-300 opacity-80">Dans les coulisses</p>
                         </div>
                     </div>
 
                     <!-- Video 3 -->
                     <div
-                        class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
-                        <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
+                        class="flex-shrink-0 w-[280px] md:w-[330px] snap-center relative group/video rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:shadow-3xl bg-black ring-1 ring-white/20">
+                        <video class="w-full h-[480px] md:h-[520px] object-cover" autoplay muted loop playsinline>
                             <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video3_zttlrn.mp4"
                                 type="video/mp4">
                         </video>
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none">
                         </div>
-                        <div class="absolute bottom-6 left-6 text-white pointer-events-none">
-                            <p class="font-bold text-xl uppercase tracking-wider font-serif">Nos Spécialités</p>
+                        <div
+                            class="absolute top-4 left-4 flex items-center space-x-2 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                            <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                            <span class="text-white text-xs font-semibold uppercase tracking-wide">Live</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <p class="font-bold text-2xl font-serif mb-1">Nos Spécialités</p>
+                            <p class="text-sm text-gray-300 opacity-80">Plats signature</p>
                         </div>
                     </div>
 
                     <!-- Video 4 -->
                     <div
-                        class="flex-shrink-0 w-[280px] md:w-[320px] snap-center relative group/video rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.02] border-4 border-white bg-black">
-                        <video class="w-full h-[550px] object-cover" autoplay muted loop playsinline>
+                        class="flex-shrink-0 w-[280px] md:w-[330px] snap-center relative group/video rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:shadow-3xl bg-black ring-1 ring-white/20">
+                        <video class="w-full h-[480px] md:h-[520px] object-cover" autoplay muted loop playsinline>
                             <source src="https://res.cloudinary.com/dmjs7e4f0/video/upload/video4_gl76pc.mp4"
                                 type="video/mp4">
                         </video>
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none">
+                            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none">
                         </div>
-                        <div class="absolute bottom-6 left-6 text-white pointer-events-none">
-                            <p class="font-bold text-xl uppercase tracking-wider font-serif">Événements</p>
+                        <div
+                            class="absolute top-4 left-4 flex items-center space-x-2 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                            <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                            <span class="text-white text-xs font-semibold uppercase tracking-wide">Live</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <p class="font-bold text-2xl font-serif mb-1">Événements</p>
+                            <p class="text-sm text-gray-300 opacity-80">Moments partagés</p>
                         </div>
                     </div>
 
+                </div>
+
+                <!-- Navigation Dots -->
+                <div class="flex justify-center space-x-2 mt-6">
+                    <button onclick="scrollToVideo(0)"
+                        class="video-dot w-3 h-3 rounded-full bg-atypique-red transition-all duration-300"></button>
+                    <button onclick="scrollToVideo(1)"
+                        class="video-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-atypique-red/50 transition-all duration-300"></button>
+                    <button onclick="scrollToVideo(2)"
+                        class="video-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-atypique-red/50 transition-all duration-300"></button>
+                    <button onclick="scrollToVideo(3)"
+                        class="video-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-atypique-red/50 transition-all duration-300"></button>
                 </div>
             </div>
         </div>
@@ -571,16 +640,37 @@
     <!-- ========================= SCRIPTS ========================= -->
     <script>
         // Video Carousel Navigation
-        function scrollVideos(direction) {
-            const container = document.getElementById('video-carousel');
-            const scrollAmount = 340; // Width of one video + space
+        const videoCarousel = document.getElementById('video-carousel');
+        const videoDots = document.querySelectorAll('.video-dot');
+        const videoWidth = 350; // Width of one video card + gap
 
+        function scrollVideos(direction) {
             if (direction === 'left') {
-                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                videoCarousel.scrollBy({ left: -videoWidth, behavior: 'smooth' });
             } else {
-                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                videoCarousel.scrollBy({ left: videoWidth, behavior: 'smooth' });
             }
         }
+
+        function scrollToVideo(index) {
+            videoCarousel.scrollTo({ left: index * videoWidth, behavior: 'smooth' });
+        }
+
+        // Update active dot on scroll
+        videoCarousel.addEventListener('scroll', () => {
+            const scrollPosition = videoCarousel.scrollLeft;
+            const activeIndex = Math.round(scrollPosition / videoWidth);
+
+            videoDots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.remove('bg-gray-300');
+                    dot.classList.add('bg-atypique-red', 'scale-125');
+                } else {
+                    dot.classList.remove('bg-atypique-red', 'scale-125');
+                    dot.classList.add('bg-gray-300');
+                }
+            });
+        });
     </script>
 </body>
 
