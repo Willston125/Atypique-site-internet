@@ -451,33 +451,29 @@
                 </button>
             </div>
 
-            <!-- ==================== CÔTÉ SALÉ ==================== -->
+            <!-- ==================== CÔTÉ SALÉ (8 produits) ==================== -->
             <div x-show="activeTab === 'sale'" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform translate-y-4"
                 x-transition:enter-end="opacity-100 transform translate-y-0">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
 
-                    <!-- Mini Burger Gourmet -->
+                    <!-- Mini Burger -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop"
-                                alt="Mini Burger Gourmet"
+                                alt="Mini Burger"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                150 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Mini Burger Gourmet</h3>
-                            <p class="text-gray-500 text-sm mb-4">Bœuf, cheddar, sauce maison.</p>
-                            <button @click="cart.push({name: 'Mini Burger Gourmet', price: 150})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Mini Burger</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">150 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Le classique indétrônable.</p>
+                            <button @click="cart.push({name: 'Mini Burger', price: 150})"
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
@@ -485,74 +481,20 @@
                     <!-- Mini Wrap Poulet -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&h=300&fit=crop"
                                 alt="Mini Wrap Poulet"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                100 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Mini Wrap Poulet</h3>
-                            <p class="text-gray-500 text-sm mb-4">Poulet mariné, crudités croquantes.</p>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Mini Wrap Poulet</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Frais et léger.</p>
                             <button @click="cart.push({name: 'Mini Wrap Poulet', price: 100})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Mini Pizza -->
-                    <div
-                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop"
-                                alt="Mini Pizza"
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                80 FDJ</div>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Mini Pizza</h3>
-                            <p class="text-gray-500 text-sm mb-4">Tomate, mozzarella, origan.</p>
-                            <button @click="cart.push({name: 'Mini Pizza', price: 80})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Samboussa -->
-                    <div
-                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop"
-                                alt="Samboussa"
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                70 FDJ</div>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Samboussa</h3>
-                            <p class="text-gray-500 text-sm mb-4">Poulet ou Viande hachée croustillante.</p>
-                            <button @click="cart.push({name: 'Samboussa', price: 70})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
@@ -560,24 +502,62 @@
                     <!-- Club Sandwich -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=300&fit=crop"
                                 alt="Club Sandwich"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                90 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Club Sandwich</h3>
-                            <p class="text-gray-500 text-sm mb-4">Le classique indémodable.</p>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Club Sandwich</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">90 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Pain de mie moelleux, garniture généreuse.</p>
                             <button @click="cart.push({name: 'Club Sandwich', price: 90})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mini Pizza -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop"
+                                alt="Mini Pizza"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Mini Pizza</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">80 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Tomate, fromage, olives.</p>
+                            <button @click="cart.push({name: 'Mini Pizza', price: 80})"
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Samboussa -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop"
+                                alt="Samboussa"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Samboussa</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">70 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Poulet ou Viande hachée.</p>
+                            <button @click="cart.push({name: 'Samboussa', price: 70})"
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
@@ -585,24 +565,62 @@
                     <!-- Mini Toast Avocat -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop"
                                 alt="Mini Toast Avocat"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                150 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Mini Toast Avocat</h3>
-                            <p class="text-gray-500 text-sm mb-4">Fraîcheur et onctuosité.</p>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Mini Toast Avocat</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">150 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Avocat frais sur pain croustillant.</p>
                             <button @click="cart.push({name: 'Mini Toast Avocat', price: 150})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Salés au Saumon -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=400&h=300&fit=crop"
+                                alt="Salés au Saumon"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Salés au Saumon</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">150 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Finesse et élégance.</p>
+                            <button @click="cart.push({name: 'Salés au Saumon', price: 150})"
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Brochette de Poulet -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop"
+                                alt="Brochette de Poulet"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Brochette Poulet</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">150 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Mariné et grillé à la perfection.</p>
+                            <button @click="cart.push({name: 'Brochette de Poulet', price: 150})"
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
@@ -610,39 +628,34 @@
                 </div>
             </div>
 
-            <!-- ==================== DOUCEURS SUCRÉES ==================== -->
+            <!-- ==================== DOUCEURS SUCRÉES (6 produits) ==================== -->
             <div x-show="activeTab === 'sucre'" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform translate-y-4"
                 x-transition:enter-end="opacity-100 transform translate-y-0">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
 
-                    <!-- Tiramisu -->
+                    <!-- Tiramisu - Best Seller -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100 relative">
-                        <!-- Badge Coup de Coeur -->
                         <div
                             class="absolute top-3 left-3 z-10 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center space-x-1">
                             <span>❤️</span>
-                            <span>Coup de Cœur</span>
+                            <span>Best-Seller</span>
                         </div>
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop"
                                 alt="Tiramisu"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                150 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Tiramisu</h3>
-                            <p class="text-gray-500 text-sm mb-4">La spécialité du chef.</p>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Tiramisu</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">150 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Crémeux, café, cacao.</p>
                             <button @click="cart.push({name: 'Tiramisu', price: 150})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
@@ -650,24 +663,20 @@
                     <!-- Mini Tarte aux Fruits -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400&h=300&fit=crop"
                                 alt="Mini Tarte aux Fruits"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                90 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Mini Tarte aux Fruits</h3>
-                            <p class="text-gray-500 text-sm mb-4">Fruits de saison sur sablé breton.</p>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Mini Tarte Fruits</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">90 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Fruits de saison sur fond sablé.</p>
                             <button @click="cart.push({name: 'Mini Tarte aux Fruits', price: 90})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
@@ -675,24 +684,20 @@
                     <!-- Mini Brownie -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=400&h=300&fit=crop"
                                 alt="Mini Brownie"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                100 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Mini Brownie</h3>
-                            <p class="text-gray-500 text-sm mb-4">Chocolat intense et noix.</p>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Mini Brownie</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Tout chocolat, fondant à souhait.</p>
                             <button @click="cart.push({name: 'Mini Brownie', price: 100})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
@@ -700,24 +705,62 @@
                     <!-- Mini Éclair -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1525059337994-f05a3a9f6e54?w=400&h=300&fit=crop"
                                 alt="Mini Éclair"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                80 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Mini Éclair</h3>
-                            <p class="text-gray-500 text-sm mb-4">Chocolat ou Café.</p>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Mini Éclair</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">80 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Chocolat ou Café.</p>
                             <button @click="cart.push({name: 'Mini Éclair', price: 80})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Noix de Coco -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1560180474-e8563e58f43a?w=400&h=300&fit=crop"
+                                alt="Noix de Coco"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Noix de Coco</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">80 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Bouchée exotique.</p>
+                            <button @click="cart.push({name: 'Noix de Coco', price: 80})"
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tranche de Marbré -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=400&h=300&fit=crop"
+                                alt="Tranche de Marbré"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Tranche Marbré</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Le gâteau de notre enfance.</p>
+                            <button @click="cart.push({name: 'Tranche de Marbré', price: 100})"
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
@@ -725,33 +768,29 @@
                 </div>
             </div>
 
-            <!-- ==================== VIENNOISERIES ==================== -->
+            <!-- ==================== VIENNOISERIES (4 produits) ==================== -->
             <div x-show="activeTab === 'matin'" x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform translate-y-4"
                 x-transition:enter-end="opacity-100 transform translate-y-0">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
 
                     <!-- Mini Pain au Chocolat -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1530610476181-d83430b64dcd?w=400&h=300&fit=crop"
                                 alt="Mini Pain au Chocolat"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                100 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Mini Pain au Chocolat</h3>
-                            <p class="text-gray-500 text-sm mb-4">Pur beurre.</p>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Pain au Chocolat</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Pur beurre, chocolat fondant.</p>
                             <button @click="cart.push({name: 'Mini Pain au Chocolat', price: 100})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
@@ -759,24 +798,20 @@
                     <!-- Mini Croissant -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400&h=300&fit=crop"
                                 alt="Mini Croissant"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                100 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Mini Croissant</h3>
-                            <p class="text-gray-500 text-sm mb-4">Doré et croustillant.</p>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Mini Croissant</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Le petit-déjeuner parisien.</p>
                             <button @click="cart.push({name: 'Mini Croissant', price: 100})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
@@ -784,25 +819,41 @@
                     <!-- Brioche au Fromage Kiri -->
                     <div
                         class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
-                        <div class="relative h-48 overflow-hidden">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1509365390695-33aee754301f?w=400&h=300&fit=crop"
                                 alt="Brioche au Fromage Kiri"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute top-3 right-3 bg-atypique-red text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                                90 FDJ</div>
                         </div>
-                        <div class="p-5">
-                            <h3 class="text-lg font-serif font-bold text-atypique-gray mb-1">Brioche au Fromage Kiri
-                            </h3>
-                            <p class="text-gray-500 text-sm mb-4">Moelleux et fondant.</p>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Brioche Kiri</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">90 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">La touche salée-sucrée originale.</p>
                             <button @click="cart.push({name: 'Brioche au Fromage Kiri', price: 90})"
-                                class="w-full bg-atypique-gray text-white py-2.5 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm flex items-center justify-center space-x-2">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Ajouter au panier</span>
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mini Pain aux Raisins -->
+                    <div
+                        class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-gray-100">
+                        <div class="relative h-36 md:h-44 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=400&h=300&fit=crop"
+                                alt="Mini Pain aux Raisins"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-base font-serif font-bold text-atypique-gray">Pain aux Raisins</h3>
+                                <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mb-3">Escargot gourmand.</p>
+                            <button @click="cart.push({name: 'Mini Pain aux Raisins', price: 100})"
+                                class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
+                                Ajouter
                             </button>
                         </div>
                     </div>
