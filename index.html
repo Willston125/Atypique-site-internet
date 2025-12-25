@@ -22,6 +22,12 @@
 
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/hamburger.png">
 
+    <!-- PWA Configuration -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#8B3A3A">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -54,12 +60,27 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* Mobile Bottom Nav Safety */
+        .safe-area-pb {
+            padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+
+        @media (max-width: 767px) {
+            body {
+                padding-bottom: 70px;
+            }
+
+            /* Hide WhatsApp button when bottom bar is visible */
+            .whatsapp-float {
+                bottom: 80px !important;
+            }
+        }
     </style>
 </head>
 
 
-<body class="font-sans bg-atypique-cream text-atypique-gray antialiased"
-    x-data="{ cart: [], showCart: false, showPromo: true }">
+<body class="font-sans bg-atypique-cream text-atypique-gray antialiased" x-data="cartApp()">
 
     <!-- ========================= PROMOTIONAL TOP BAR ========================= -->
     <div x-show="showPromo" x-transition class="bg-black text-white text-center text-xs md:text-sm py-2 px-4 relative">
@@ -468,7 +489,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">150 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Le classique indétrônable.</p>
-                            <button @click="cart.push({name: 'Mini Burger', price: 150})"
+                            <button @click="addToCart({name: 'Mini Burger', price: 150})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -489,7 +510,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Frais et léger.</p>
-                            <button @click="cart.push({name: 'Mini Wrap Poulet', price: 100})"
+                            <button @click="addToCart({name: 'Mini Wrap Poulet', price: 100})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -510,7 +531,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">90 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Pain de mie moelleux, garniture généreuse.</p>
-                            <button @click="cart.push({name: 'Club Sandwich', price: 90})"
+                            <button @click="addToCart({name: 'Club Sandwich', price: 90})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -531,7 +552,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">80 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Tomate, fromage, olives.</p>
-                            <button @click="cart.push({name: 'Mini Pizza', price: 80})"
+                            <button @click="addToCart({name: 'Mini Pizza', price: 80})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -552,7 +573,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">70 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Poulet ou Viande hachée.</p>
-                            <button @click="cart.push({name: 'Samboussa', price: 70})"
+                            <button @click="addToCart({name: 'Samboussa', price: 70})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -573,7 +594,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">150 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Avocat frais sur pain croustillant.</p>
-                            <button @click="cart.push({name: 'Mini Toast Avocat', price: 150})"
+                            <button @click="addToCart({name: 'Mini Toast Avocat', price: 150})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -594,7 +615,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">150 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Finesse et élégance.</p>
-                            <button @click="cart.push({name: 'Salés au Saumon', price: 150})"
+                            <button @click="addToCart({name: 'Salés au Saumon', price: 150})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -615,7 +636,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">150 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Mariné et grillé à la perfection.</p>
-                            <button @click="cart.push({name: 'Brochette de Poulet', price: 150})"
+                            <button @click="addToCart({name: 'Brochette de Poulet', price: 150})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -650,7 +671,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">150 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Crémeux, café, cacao.</p>
-                            <button @click="cart.push({name: 'Tiramisu', price: 150})"
+                            <button @click="addToCart({name: 'Tiramisu', price: 150})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -671,7 +692,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">90 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Fruits de saison sur fond sablé.</p>
-                            <button @click="cart.push({name: 'Mini Tarte aux Fruits', price: 90})"
+                            <button @click="addToCart({name: 'Mini Tarte aux Fruits', price: 90})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -692,7 +713,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Tout chocolat, fondant à souhait.</p>
-                            <button @click="cart.push({name: 'Mini Brownie', price: 100})"
+                            <button @click="addToCart({name: 'Mini Brownie', price: 100})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -713,7 +734,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">80 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Chocolat ou Café.</p>
-                            <button @click="cart.push({name: 'Mini Éclair', price: 80})"
+                            <button @click="addToCart({name: 'Mini Éclair', price: 80})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -734,7 +755,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">80 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Bouchée exotique.</p>
-                            <button @click="cart.push({name: 'Noix de Coco', price: 80})"
+                            <button @click="addToCart({name: 'Noix de Coco', price: 80})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -755,7 +776,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Le gâteau de notre enfance.</p>
-                            <button @click="cart.push({name: 'Tranche de Marbré', price: 100})"
+                            <button @click="addToCart({name: 'Tranche de Marbré', price: 100})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -785,7 +806,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Pur beurre, chocolat fondant.</p>
-                            <button @click="cart.push({name: 'Mini Pain au Chocolat', price: 100})"
+                            <button @click="addToCart({name: 'Mini Pain au Chocolat', price: 100})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -806,7 +827,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Le petit-déjeuner parisien.</p>
-                            <button @click="cart.push({name: 'Mini Croissant', price: 100})"
+                            <button @click="addToCart({name: 'Mini Croissant', price: 100})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -827,7 +848,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">90 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">La touche salée-sucrée originale.</p>
-                            <button @click="cart.push({name: 'Brioche au Fromage Kiri', price: 90})"
+                            <button @click="addToCart({name: 'Brioche au Fromage Kiri', price: 90})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -848,7 +869,7 @@
                                 <span class="text-lg font-bold text-atypique-red whitespace-nowrap">100 FDJ</span>
                             </div>
                             <p class="text-gray-500 text-xs mb-3">Escargot gourmand.</p>
-                            <button @click="cart.push({name: 'Mini Pain aux Raisins', price: 100})"
+                            <button @click="addToCart({name: 'Mini Pain aux Raisins', price: 100})"
                                 class="w-full bg-atypique-gray text-white py-2 rounded-full hover:bg-atypique-red transition-all duration-300 font-semibold text-sm">
                                 Ajouter
                             </button>
@@ -1108,14 +1129,101 @@
 
     <!-- ========================= WHATSAPP FLOATING BUTTON ========================= -->
     <a href="https://wa.me/25377382287" target="_blank"
-        class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-all transform hover:scale-110 animate-bounce">
+        class="whatsapp-float fixed bottom-6 right-6 z-40 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-all transform hover:scale-110 animate-bounce">
         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
             <path
                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
         </svg>
     </a>
 
+    <!-- ========================= MOBILE BOTTOM NAVIGATION ========================= -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 md:hidden safe-area-pb shadow-lg">
+        <div class="flex justify-around items-center py-3">
+            <!-- Accueil -->
+            <a href="#hero"
+                class="flex flex-col items-center text-gray-500 hover:text-atypique-red transition-colors px-4">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1 font-medium">Accueil</span>
+            </a>
+            <!-- Carte -->
+            <a href="#menu"
+                class="flex flex-col items-center text-gray-500 hover:text-atypique-red transition-colors px-4">
+                <i class="fas fa-utensils text-xl"></i>
+                <span class="text-xs mt-1 font-medium">Carte</span>
+            </a>
+            <!-- Panier (avec badge) -->
+            <button @click="showCart = true"
+                class="relative flex flex-col items-center text-gray-500 hover:text-atypique-red transition-colors px-4">
+                <div class="relative">
+                    <i class="fas fa-shopping-bag text-xl"></i>
+                    <span x-show="cart.length > 0" x-text="cart.length"
+                        class="absolute -top-2 -right-2 bg-atypique-red text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold animate-pulse"></span>
+                </div>
+                <span class="text-xs mt-1 font-medium">Panier</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========================= PWA INSTALL TOAST ========================= -->
+    <div id="pwa-install-toast"
+        class="fixed bottom-24 left-4 right-4 md:left-auto md:right-6 md:w-80 md:bottom-6 bg-atypique-gray text-white p-4 rounded-xl shadow-2xl z-50 transform translate-y-full opacity-0 transition-all duration-300"
+        style="display: none;">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-atypique-red rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold font-serif text-lg">A</span>
+                </div>
+                <div>
+                    <p class="font-semibold text-sm">Installez L'Atypique</p>
+                    <p class="text-xs text-gray-300">Commandez plus vite !</p>
+                </div>
+            </div>
+            <button onclick="dismissInstallToast()" class="text-gray-400 hover:text-white transition-colors ml-2">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- ========================= SCRIPTS ========================= -->
+    <!-- Alpine.js Cart App with localStorage persistence -->
+    <script>
+        // Cart App with localStorage persistence
+        function cartApp() {
+            return {
+                cart: [],
+                showCart: false,
+                showPromo: true,
+
+                init() {
+                    // Restore cart from localStorage
+                    const savedCart = localStorage.getItem('atypique-cart');
+                    if (savedCart) {
+                        try {
+                            this.cart = JSON.parse(savedCart);
+                        } catch (e) {
+                            console.warn('Could not parse saved cart:', e);
+                            this.cart = [];
+                        }
+                    }
+
+                    // Watch for cart changes and save to localStorage
+                    this.$watch('cart', (value) => {
+                        localStorage.setItem('atypique-cart', JSON.stringify(value));
+                    });
+                },
+
+                // Add to cart with haptic feedback
+                addToCart(item) {
+                    this.cart.push(item);
+                    // Haptic feedback
+                    if ('vibrate' in navigator) {
+                        navigator.vibrate(50);
+                    }
+                }
+            }
+        }
+    </script>
+
     <script>
         // Video Carousel Navigation
         const videoCarousel = document.getElementById('video-carousel');
@@ -1149,6 +1257,45 @@
                 }
             });
         });
+
+        // ========================= PWA INSTALL DETECTION =========================
+        let deferredPrompt;
+        const installToast = document.getElementById('pwa-install-toast');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Show install toast after 3 seconds if not dismissed before
+            setTimeout(() => {
+                if (!localStorage.getItem('pwa-install-dismissed')) {
+                    showInstallToast();
+                }
+            }, 3000);
+        });
+
+        function showInstallToast() {
+            if (installToast) {
+                installToast.style.display = 'block';
+                setTimeout(() => {
+                    installToast.classList.remove('translate-y-full', 'opacity-0');
+                }, 100);
+            }
+        }
+
+        function dismissInstallToast() {
+            if (installToast) {
+                installToast.classList.add('translate-y-full', 'opacity-0');
+                setTimeout(() => {
+                    installToast.style.display = 'none';
+                }, 300);
+                localStorage.setItem('pwa-install-dismissed', 'true');
+            }
+        }
+
+        // Check if app is already installed (standalone mode)
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            console.log('App is running in standalone mode (PWA installed)');
+        }
     </script>
 </body>
 
